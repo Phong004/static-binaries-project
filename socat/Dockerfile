@@ -1,3 +1,5 @@
+ARG SOCAT_VER=1.8.1.1
+
 # ========================================
 # Prepare Environment and Tools
 # ========================================
@@ -7,8 +9,7 @@ RUN apk add --no-cache build-base linux-headers curl tar perl
 
 ENV OPENSSL_VER=3.6.2 \
     NCURSES_VER=6.6 \
-    READLINE_VER=8.3 \
-    SOCAT_VER=1.8.1.1
+    READLINE_VER=8.3
 
 WORKDIR /build
 
