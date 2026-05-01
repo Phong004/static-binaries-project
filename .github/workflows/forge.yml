@@ -17,14 +17,20 @@ jobs:
             - name: 1. Clone Source Code
               uses: actions/checkout@v4
             
-            - name: 2. Build tool
-              run: |
-                cd ${{ github.event.inputs.tool_name }}
-                DOCKER_BUILDKIT=1 docker build -o . .
+            - name: 2. Setup Docker buildx
+              uses: docker/setup-buildx-action@v3
             
-            - name: 3. Package artifact
+            - name: 3. Build tool with GHA Cache
+              uses: docker/build-push-action@v5
+              with:
+                context: ${{ github.event.inputs.tool_name }}
+                outputs: type=local,dest=./${{ github.event.inputs.tool_name }}_static
+                cache-from: type=gha
+                cache-to: type=gha,mode=max
+            
+            - name: 4. Package artifact
               uses: actions/upload-artifact@v4
               with:
                 name: ${{ github.event.inputs.tool_name }}
-                path: ${{ github.event.inputs.tool_name }}/${{ github.event.inputs.tool_name }}_static
+                path: ./${{ github.event.inputs.tool_name }}_static
                 retention-days: 5
