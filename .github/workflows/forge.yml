@@ -19,12 +19,12 @@ jobs:
             
             - name: 2. Build tool
               run: |
-                cd static-binaries-project/${{ github.event.inputs.tool_name }}
+                cd ${{ github.event.inputs.tool_name }}
                 DOCKER_BUILDKIT=1 docker build -o . .
             
             - name: 3. Package artifact
               uses: actions/upload-artifact@v4
               with:
                 name: ${{ github.event.inputs.tool_name }}
-                path: /static-binaries-project${{ github.event.inputs.tool_name }}_static
+                path: ${{ github.event.inputs.tool_name }}/${{ github.event.inputs.tool_name }}_static
                 retention-days: 5
