@@ -45,4 +45,4 @@ RUN curl -LO "http://www.dest-unreach.org/socat/download/socat-${SOCAT_VER}.tar.
 # =========================================
 FROM scratch AS exporter
 ARG SOCAT_VER
-COPY --from=builder /build/socat-${SOCAT_VER}/socat /socat_static
+COPY --from=builder /build/socat-${SOCAT_VER}/socat /socat
