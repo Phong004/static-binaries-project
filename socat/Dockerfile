@@ -1,3 +1,5 @@
+# Compilation logic adapted from Andrew Dunham's script: https://github.com/andrew-d/static-binaries/tree/0be803093b7d4b627b4d4eddd732e54ac4184b67/socat
+
 ARG SOCAT_VER=1.8.1.1
 # ========================================
 # Prepare Environment and Tools
